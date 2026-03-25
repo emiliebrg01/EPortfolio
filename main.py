@@ -32,14 +32,14 @@ class Person:
 
 
 class Contact:
-    def __ini__(self, email, phone, linkdln, adress):
+    def __init__(self, email, phone, linkdln, adress):
         self.user_email = email
         self.user_phone = phone
         self.user_linkdln = linkdln
         self.user_adress = adress
 
 
-class Projects:
+class Project:
     def __init__(self, name, year, place, skills, only, status):
         self.project_name = name
         self.project_year = year
@@ -54,4 +54,5 @@ class testimonials:
         return None
 
 
-# Surement que methode CRON elle sera gerer ailleurs
+# Surement que methode CRUB elle sera gerer ailleurs
+# Ne pas mettre self.project_name mais juste self.name car deja dans la classe
