@@ -10,6 +10,7 @@
 # Classe contact
 # Classe temoignage
 
+
 class Person:
     def __init__(self, firstname, lastname, age, status):
         self.user_firstname = firstname
@@ -19,13 +20,13 @@ class Person:
 
     def create_person():
         return None
-    
+
     def get_person():
         return None
 
     def put_person():
         return None
-    
+
     def delete_person():
         return None
 
@@ -37,7 +38,7 @@ class Contact:
         self.user_linkdln = linkdln
         self.user_adress = adress
 
-    
+
 class Projects:
     def __init__(self, name, year, place, skills, only, status):
         self.project_name = name
@@ -47,9 +48,10 @@ class Projects:
         self.project_only = only
         self.project_status = status
 
+
 class testimonials:
-    
-        
+    def __init__():
+        return None
 
-# Surement que methode CRON elle sera gerer ailleurs 
 
+# Surement que methode CRON elle sera gerer ailleurs
