@@ -6,41 +6,55 @@
 # Classe contact (mail, tel, linkdln, adress)
 #
 #
-# Classe expériences (name, year, place, skills, only (bool), )
+# Classe expériences (name, year, place, skills, only (bool), status, )
 # Classe contact
 # Classe temoignage
 
-class Personne:
-    def __init__(self, firstname, lastname, age, statut)
+class Person:
+    def __init__(self, firstname, lastname, age, status):
         self.user_firstname = firstname
         self.user_lastname = lastname
         self.user_age = age
-        self. statut = statut
+        self.statut = status
 
 
-    def create_personne():
+    def create_person():
+        return None
     
-    def get_personne():
+    def get_person():
+        return None
 
-    def put_personne():
+    def put_person():
+        return None
     
-    def delete_personne():
-    
+    def delete_person():
+        return None
 
 
 class Contact:
-    def __ini__(self, email, phone, linkdln, adress)
+    def __ini__(self, email, phone, linkdln, adress):
         self.user_email = email
         self.user_phone = phone
         self.user_linkdln = linkdln
         self.user_adress = adress
 
-    def Ajouter
+    def create_contact():
+        return None
+    
+    def get_pers():
+        return None
+
+    def put_person():
+        return None
+    
+    def delete_person():
+        return None
 
 
 
 class Projects:
-    def __init__(self, )
+    def __init__(self, name, year, place, skills, only, status):
+        
         
 
 
