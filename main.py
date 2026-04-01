@@ -41,12 +41,12 @@ class Contact:
 
 class Project:
     def __init__(self, name, year, place, skills, only, status):
-        self.project_name = name
-        self.project_year = year
-        self.project_place = place
-        self.project_skills = skills
-        self.project_only = only
-        self.project_status = status
+        self.name = name
+        self.year = year
+        self.place = place
+        self.skills = skills
+        self.only = only
+        self.status = status
 
 
 class testimonials:
@@ -55,4 +55,4 @@ class testimonials:
 
 
 # Surement que methode CRUB elle sera gerer ailleurs
-# Ne pas mettre self.project_name mais juste self.name car deja dans la classe
+
