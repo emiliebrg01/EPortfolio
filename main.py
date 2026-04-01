@@ -15,6 +15,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
+
 class Person:
     def __init__(self, firstname, lastname, age, status):
         self.user_firstname = firstname
@@ -64,9 +65,10 @@ template = Jinja2Templates(directory="templates")
 
 app = FastAPI()
 
-name=["Maxence"]
+name = ["Maxence"]
+
 
 @app.get("/", response_class=HTMLResponse)
 def read_home(request: Request):
-    context = {}
-    return template.TemplateResponse(request, "Template.html", context=context)
+    context = {"name": name}
+    return template.TemplateResponse(request, "template.html", context=context)
