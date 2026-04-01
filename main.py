@@ -16,12 +16,12 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
 
-class Person:
-    def __init__(self, firstname, lastname, age, status):
-        self.user_firstname = firstname
-        self.user_lastname = lastname
-        self.user_age = age
-        self.statut = status
+# class Person:
+#    def __init__(self, firstname, lastname, age, status):
+#        self.user_firstname = firstname
+#        self.user_lastname = lastname
+#        self.user_age = age
+#        self.statut = status
 
 #     def create_person():
 #         return None
