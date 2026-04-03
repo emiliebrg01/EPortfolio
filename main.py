@@ -65,10 +65,22 @@ template = Jinja2Templates(directory="templates")
 
 app = FastAPI()
 
-name = ["Maxence"]
+firtsname = "Maxence"
+name = "Baissas"
+phone = "0615154270"
+mail = "maxence.baissas@epfedu.fr"
+experiences = []
+formations = []
 
 
 @app.get("/", response_class=HTMLResponse)
 def read_home(request: Request):
-    context = {"name": name}
+    context = {
+        "name": name,
+        "firstname": firtsname,
+        "phone": phone,
+        "mail": mail,
+        "experiences": experiences,
+        "formations": formations,
+    }
     return template.TemplateResponse(request, "template.html", context=context)
