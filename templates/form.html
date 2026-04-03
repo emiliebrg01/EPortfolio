@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Générateur de CV</title>
+    <script>
+        let expCount = 0;
+        let formCount = 0;
+
+        function addExperience() {
+            document.getElementById("experiences").innerHTML += `
+                <div>
+                    <input name="poste_${expCount}" placeholder="Poste">
+                    <input name="entreprise_${expCount}" placeholder="Entreprise">
+                    <input name="exp_debut_${expCount}" placeholder="Date début">
+                    <input name="exp_fin_${expCount}" placeholder="Date fin">
+                    <textarea name="exp_desc_${expCount}" placeholder="Description"></textarea>
+                </div>
+            `;
+            expCount++;
+        }
+
+        function addFormation() {
+            document.getElementById("formations").innerHTML += `
+                <div>
+                    <input name="diplome_${formCount}" placeholder="Diplôme">
+                    <input name="etablissement_${formCount}" placeholder="Établissement">
+                    <input name="form_debut_${formCount}" placeholder="Année début">
+                    <input name="form_fin_${formCount}" placeholder="Année fin">
+                    <textarea name="form_desc_${formCount}" placeholder="Description"></textarea>
+                </div>
+            `;
+            formCount++;
+        }
+    </script>
+</head>
+<body>
+
+<h1>Créer mon CV</h1>
+
+<form action="/generate" method="post">
+
+    <h2>Informations personnelles</h2>
+    <input name="firstname" placeholder="Firstname" required><br>
+    <input name="name" placeholder="Name" required><br>
+    <input name="mail" placeholder="Mail"><br>
+    <input name="phone" placeholder="Phone Nuber"><br>
+
+    <h2>Expériences</h2>
+    <div id="experiences"></div>
+    <button type="button" onclick="addExperience()">+ Ajouter une expérience</button>
+
+    <h2>Formations</h2>
+    <div id="formations"></div>
+    <button type="button" onclick="addFormation()">+ Ajouter une formation</button>
+
+    <br><br>
+    <button type="submit">Générer le CV</button>
+</form>
+
+</body>
+</html>

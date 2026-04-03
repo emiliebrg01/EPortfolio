@@ -1,59 +1,42 @@
 # ## Fichier main ##
 
-# # Les classes à creer ! (chaque classe sera une partie du portfolio)
-
-# # Classe personne (about me) : firstname, lastname, age, statut
-# # Classe contact (mail, tel, linkdln, adress)
-# #
-# #
-# # Classe expériences (name, year, place, skills, only (bool), status, )
-# # Classe contact
-# # Classe temoignage
-
-
-from fastapi import FastAPI, Request
+#################
+#### IMPORTS ####
+#################
+from fastapi import FastAPI, Request, Depends
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from sqlmodel import create_engine, Session
+from typing import Annotated
 
+################################
+#### Initialisation FastAPI ####
+################################
+app = FastAPI()
+template = Jinja2Templates(directory="templates")
 
-#     def create_person():
-#         return None
+########################
+#### Base de donnée ####
+########################
 
-#     def get_person():
-#         return None
+sqlite_file_name = "database.db" # Nom de la base
 
-#     def put_person():
-#         return None
+sqlite_url = f"sqlite:///{sqlite_file_name}" # URL de connexion
 
-#     def delete_person():
-#         return None
+engine = create_engine(    # 3. Création de engine -> connexion a la base de donnée
+    sqlite_url,
+    connect_args={"check_same_thread": False}  # obligatoire avec SQLite + FastAPI
+)
 
+def get_session():  # 4. Récupére la session
+    with Session(engine) as session:
+        yield session
 
-# class Contact:
-#     def __init__(self, email, phone, linkdln, adress):
-#         self.user_email = email
-#         self.user_phone = phone
-#         self.user_linkdln = linkdln
-#         self.user_adress = adress
+SessionDep = Annotated[Session, Depends(get_session)]
 
-
-# class Project:
-#     def __init__(self, name, year, place, skills, only, status):
-#         self.project_name = name
-#         self.project_year = year
-#         self.project_place = place
-#         self.project_skills = skills
-#         self.project_only = only
-#         self.project_status = status
-
-
-# class testimonials:
-#     def __init__():
-#         return None
-
-
-# Surement que methode CRUB elle sera gerer ailleurs
+######################
+#### Model Person ####
+######################
 
 class Person:
     def __init__(self, firstname, lastname, age, status):
@@ -62,10 +45,9 @@ class Person:
         self.user_age = age
         self.statut = status
 
-template = Jinja2Templates(directory="templates")
 
-app = FastAPI()
 
+'''
 firtsname = "Maxence"
 name = "Baissas"
 phone = "0615154270"
@@ -85,22 +67,52 @@ def read_home(request: Request):
         "formations": formations,
     }
     return template.TemplateResponse(request, "template.html", context=context)
+'''
+
+@app.get("/", response_class=HTMLResponse)
+async def form_page(request: Request):
+    return template.TemplateResponse("form.html", {"request": request})
 
 
-# Base de donnée 
+@app.post("/generate", response_class=HTMLResponse)
+async def generate_cv(request: Request):
+    form = await request.form()
 
-sqlite_file_name = "database.db" # Nom de la base
+    data = {
+        "prenom": form.get("prenom"),
+        "nom": form.get("nom"),
+        "email": form.get("email"),
+        "telephone": form.get("telephone"),
+        "experiences": [],
+        "formations": []
+    }
 
-sqlite_url = f"sqlite:///{sqlite_file_name}" # URL de connexion
+    # Expériences
+    i = 0
+    while form.get(f"poste_{i}"):
+        data["experiences"].append({
+            "poste": form.get(f"poste_{i}"),
+            "entreprise": form.get(f"entreprise_{i}"),
+            "debut": form.get(f"exp_debut_{i}"),
+            "fin": form.get(f"exp_fin_{i}"),
+            "description": form.get(f"exp_desc_{i}")
+        })
+        i += 1
 
-engine = create_engine(    # 3. Création de engine -> connexion a la base de donnée
-    sqlite_url,
-    connect_args={"check_same_thread": False}  # obligatoire avec SQLite + FastAPI
-)
+    # Formations
+    i = 0
+    while form.get(f"diplome_{i}"):
+        data["formations"].append({
+            "diplome": form.get(f"diplome_{i}"),
+            "etablissement": form.get(f"etablissement_{i}"),
+            "debut": form.get(f"form_debut_{i}"),
+            "fin": form.get(f"form_fin_{i}"),
+            "description": form.get(f"form_desc_{i}")
+        })
+        i += 1
 
-def get_session():  # 4. Récupére la session
-    with Session(engine) as session:
-        yield session
+    data["request"] = request
+    return template.TemplateResponse("cv.html", data)
 
 
 # CRUD 
@@ -111,3 +123,4 @@ def create_person(person: Person, session: SessionDep):
     session.refresh(person)
     return person
 
+#@app.get("/")
