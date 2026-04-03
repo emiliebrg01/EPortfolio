@@ -19,24 +19,27 @@ template = Jinja2Templates(directory="templates")
 #### Base de donnée ####
 ########################
 
-sqlite_file_name = "database.db" # Nom de la base
+sqlite_file_name = "database.db"  # Nom de la base
 
-sqlite_url = f"sqlite:///{sqlite_file_name}" # URL de connexion
+sqlite_url = f"sqlite:///{sqlite_file_name}"  # URL de connexion
 
-engine = create_engine(    # 3. Création de engine -> connexion a la base de donnée
+engine = create_engine(  # 3. Création de engine -> connexion a la base de donnée
     sqlite_url,
-    connect_args={"check_same_thread": False}  # obligatoire avec SQLite + FastAPI
+    connect_args={"check_same_thread": False},  # obligatoire avec SQLite + FastAPI
 )
+
 
 def get_session():  # 4. Récupére la session
     with Session(engine) as session:
         yield session
+
 
 SessionDep = Annotated[Session, Depends(get_session)]
 
 ######################
 #### Model Person ####
 ######################
+
 
 class Person:
     def __init__(self, firstname, lastname, age, status):
@@ -46,8 +49,7 @@ class Person:
         self.statut = status
 
 
-
-'''
+"""
 firtsname = "Maxence"
 name = "Baissas"
 phone = "0615154270"
@@ -67,7 +69,8 @@ def read_home(request: Request):
         "formations": formations,
     }
     return template.TemplateResponse(request, "template.html", context=context)
-'''
+"""
+
 
 @app.get("/", response_class=HTMLResponse)
 async def form_page(request: Request):
@@ -84,9 +87,11 @@ async def generate_cv(request: Request):
         "email": form.get("email"),
         "telephone": form.get("telephone"),
         "experiences": [],
-        "formations": []
+        "formations": [],
     }
 
+
+"""
     # Expériences
     i = 0
     while form.get(f"poste_{i}"):
@@ -113,9 +118,10 @@ async def generate_cv(request: Request):
 
     data["request"] = request
     return template.TemplateResponse("cv.html", data)
+"""
 
 
-# CRUD 
+# CRUD
 @app.post("/person/")
 def create_person(person: Person, session: SessionDep):
     session.add(person)
@@ -123,4 +129,5 @@ def create_person(person: Person, session: SessionDep):
     session.refresh(person)
     return person
 
-#@app.get("/")
+
+# @app.get("/")
