@@ -49,7 +49,6 @@ class Person:
         self.statut = status
 
 
-"""
 firtsname = "Maxence"
 name = "Baissas"
 phone = "0615154270"
@@ -69,9 +68,9 @@ def read_home(request: Request):
         "formations": formations,
     }
     return template.TemplateResponse(request, "template.html", context=context)
+
+
 """
-
-
 @app.get("/", response_class=HTMLResponse)
 async def form_page(request: Request):
     return template.TemplateResponse("form.html", {"request": request})
@@ -91,7 +90,6 @@ async def generate_cv(request: Request):
     }
 
 
-"""
     # Expériences
     i = 0
     while form.get(f"poste_{i}"):
