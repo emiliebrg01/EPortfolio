@@ -4,11 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eportfolio</title>
+    <title>CV - {{ firstname }} {{ name }}</title>
 </head>
 
 <body>
-    <div>{{name}}</div>
+    <h1>{{ firstname }} {{ name }}</h1>
+    <p>{{ mail }} | {{ phone }}</p>
+
+    <h2>Professionals experiences</h2>
+    {% for exp in experiences %}
+    <div>
+        <strong>{{ exp.poste }} – {{ exp.entreprise }}</strong>
+        <span>({{ exp.debut }} - {{ exp.fin }})</span>
+        <p>{{ exp.description }}</p>
+    </div>
+    {% endfor %}
+
+    <h2>Formations</h2>
+    {% for form in formations %}
+    <div>
+        <strong>{{ form.diplome }} – {{ form.etablissement }}</strong>
+        <span>({{ form.debut }} - {{ form.fin }})</span>
+        <p>{{ form.description }}</p>
+    </div>
+    {% endfor %}
 </body>
 
 </html>
