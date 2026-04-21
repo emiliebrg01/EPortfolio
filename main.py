@@ -6,14 +6,20 @@
 from fastapi import FastAPI, Request, Depends
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from sqlmodel import create_engine, Session
-from typing import Annotated
+from sqlmodel import SQLModel
+from database import engine
 
+from models.person_model import Person
 
 # Initialisation FastAPI 
 
 app = FastAPI()
 template = Jinja2Templates(directory="templates")
+
+# Creation des bases de données au demarrage
+SQLModel.metadata.create_all(engine)
+
+
 
 # Routers
 
