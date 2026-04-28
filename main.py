@@ -12,17 +12,13 @@ from database import engine
 from models.person_model import Person
 
 # Initialisation FastAPI 
-
 app = FastAPI()
 template = Jinja2Templates(directory="templates")
 
 # Creation des bases de données au demarrage
 SQLModel.metadata.create_all(engine)
 
-
-
 # Routers
-
 @app.get("/", response_class=HTMLResponse)
 def read_home(request: Request):
     context = {
@@ -37,3 +33,6 @@ def read_home(request: Request):
     return template.TemplateResponse(request, "template.html", context=context)
 
 
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="127.0.0.1", port=8000)
