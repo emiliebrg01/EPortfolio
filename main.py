@@ -6,9 +6,9 @@
 from fastapi import FastAPI, Request, Depends
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+
 from sqlmodel import SQLModel
 from database import engine
-
 from models.person_model import Person
 
 # Initialisation FastAPI 
@@ -27,8 +27,7 @@ def read_home(request: Request):
         "firstname": "Maxence",
         "phone": "0615154270",
         "mail": "maxence.baissas@epfedu.fr",
-        "experiences": [],
-        "formations": [],
+        "linkedln" : "Maxence Baissas"
     }
     return template.TemplateResponse(request, "template.html", context=context)
 
