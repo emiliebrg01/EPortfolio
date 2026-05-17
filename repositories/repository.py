@@ -1,5 +1,5 @@
 from sqlmodel import Session
-from models.person_model import Person
+from models.model import Person
 from schemas.dto import PersonDTO
 
 

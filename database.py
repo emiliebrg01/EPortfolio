@@ -1,10 +1,10 @@
 from sqlmodel import create_engine, Session
 
 # URL de connexion
-postgresql_url = "postgresql://postgres:777@localhost:5432/portfolio"
+sqlite_url = "sqlite:///database.db"
 
 # Création de l'engine -> connexion a la base de donnée
-engine = create_engine(postgresql_url) 
+engine = create_engine(sqlite_url) 
 
 # Récupére la session
 def get_session():
