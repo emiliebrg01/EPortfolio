@@ -38,6 +38,7 @@ class Formation(SQLModel, table=True):
     date_end: Optional[date] = None
     secteur: str = ""
     degree_type: str = ""
+    description: str = ""
     person_id: int = Field(foreign_key="person.id")
 
 

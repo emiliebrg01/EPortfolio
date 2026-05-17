@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Générateur de CV</title>
+    <title>Portfolio generator</title>
     <script>
         let expCount = 0;
         let formCount = 0;
@@ -10,10 +10,10 @@
         function addExperience() {
             document.getElementById("experiences").innerHTML += `
                 <div>
-                    <input name="poste_${expCount}" placeholder="Poste">
-                    <input name="entreprise_${expCount}" placeholder="Entreprise">
-                    <input name="exp_debut_${expCount}" placeholder="Date début">
-                    <input name="exp_fin_${expCount}" placeholder="Date fin">
+                    <input name="job_${expCount}" placeholder="Job">
+                    <input name="company_${expCount}" placeholder="Company">
+                    <input name="exp_start_${expCount}" placeholder="Date start">
+                    <input name="exp_end_${expCount}" placeholder="Date end">
                     <textarea name="exp_desc_${expCount}" placeholder="Description"></textarea>
                 </div>
             `;
@@ -23,10 +23,10 @@
         function addFormation() {
             document.getElementById("formations").innerHTML += `
                 <div>
-                    <input name="diplome_${formCount}" placeholder="Diplôme">
-                    <input name="etablissement_${formCount}" placeholder="Établissement">
-                    <input name="form_debut_${formCount}" placeholder="Année début">
-                    <input name="form_fin_${formCount}" placeholder="Année fin">
+                    <input name="formation_${formCount}" placeholder="Formation type">
+                    <input name="institution_${formCount}" placeholder="Institution">
+                    <input name="form_start_${formCount}" placeholder="Start year">
+                    <input name="form_end_${formCount}" placeholder="End year">
                     <textarea name="form_desc_${formCount}" placeholder="Description"></textarea>
                 </div>
             `;
@@ -36,17 +36,17 @@
 </head>
 <body>
 
-<h1>Créer mon CV</h1>
+<h1>Create my portfolio</h1>
 
 <form action="/generate" method="post">
 
-    <h2>Informations personnelles</h2>
+    <h2>Personals informations</h2>
     <input name="firstname" placeholder="Firstname" required><br>
     <input name="name" placeholder="Name" required><br>
     <input name="mail" placeholder="Mail"><br>
-    <input name="phone" placeholder="Phone Nuber"><br>
+    <input name="phone" placeholder="Phone number"><br>
 
-    <h2>Expériences</h2>
+    <h2>Experiences</h2>
     <div id="experiences"></div>
     <button type="button" onclick="addExperience()">+ Ajouter une expérience</button>
 
