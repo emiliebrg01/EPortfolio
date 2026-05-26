@@ -10,7 +10,7 @@
         function addExperience() {
             document.getElementById("experiences").innerHTML += `
                 <div>
-                    <input name="job_${expCount}" placeholder="Job">
+                    <input name="job_${expCount}" placeholder="Job name">
                     <input name="company_${expCount}" placeholder="Company">
                     <input name="exp_start_${expCount}" placeholder="Date start">
                     <input name="exp_end_${expCount}" placeholder="Date end">
@@ -24,7 +24,7 @@
             document.getElementById("formations").innerHTML += `
                 <div>
                     <input name="formation_${formCount}" placeholder="Formation type">
-                    <input name="institution_${formCount}" placeholder="Institution">
+                    <input name="university_${formCount}" placeholder="University">
                     <input name="form_start_${formCount}" placeholder="Start year">
                     <input name="form_end_${formCount}" placeholder="End year">
                     <textarea name="form_desc_${formCount}" placeholder="Description"></textarea>
@@ -55,7 +55,7 @@
     <button type="button" onclick="addFormation()">+ Ajouter une formation</button>
 
     <br><br>
-    <button type="submit">Générer le CV</button>
+    <button type="submit">Create the Portfolio</button>
 </form>
 
 </body>

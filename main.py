@@ -42,14 +42,55 @@ async def generate_port(request:Request):
     experiences = []
     formations = []
 
-    # Création de set pour éviter les doublons 
+    # Création de set pour reperer les indexes et éviter les doublons 
     exp = set()
-    format = set()
+    form = set()
 
+    # Repere les indexs
     for key in data_form.keys():
-        if key.startwith("poste"):
+        if key.startswith("job_"):
             exp.add(key.split("_")[1])
-        if key.startwith()
+        if key.startswith("formation_"):
+            form.add(key.split("_")[1])
+    
+    # Reconstruit les experiences et formations
+    for index in sorted(exp, key=int):
+        experiences.append(
+        {
+            "job": data_form.get(f"job_{index}", ""),
+            "company" : data_form.get(f"company_{index}", ""),
+            "start" : data_form.get(f"exp_start_{index}", ""),
+            "end" : data_form.get(f"exp_end_{index}", ""),
+            "description" : data_form.get(f"exp_desc_{index}", ""),
+        }
+        )
+
+    for index in sorted(form, key=int):
+        formations.append(
+        {
+            "formation" : data_form.get(f"formation_{index}", ""),
+            "university" : data_form.get(f"university_{index}", ""),
+            "start" : data_form.get(f"form_start_{index}", ""),
+            "end" : data_form.get(f"form_end_{index}", ""),
+            "description" : data_form.get(f"form_desc_{index}", ""),
+        }
+        )
+
+    context = {
+        "request" : request,
+        "firstname" : firstname,
+        "name" : name,
+        "mail" : mail,
+        "phone" : phone,
+        "experiences" : experiences,
+        "formations" : formations,
+    }
+
+    return template.TemplateResponse(
+        request,
+        "Template.html",
+        context=context
+    )
 
 if __name__ == "__main__":
     import uvicorn
