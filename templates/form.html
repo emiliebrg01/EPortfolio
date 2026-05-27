@@ -1,58 +1,257 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
+<!DOCTYPE html> <!-- page html -->
+<html lang="fr"> 
+
+<head>  <!-- infos de configuration de la page -->
     <meta charset="UTF-8">
     <title>Portfolio generator</title>
-    <script>
-        let expCount = 0;
-        let formCount = 0;
 
-        function addExperience() {
-            document.getElementById("experiences").innerHTML += `
-                <div>
-                    <input name="job_${expCount}" placeholder="Job name">
-                    <input name="company_${expCount}" placeholder="Company">
-                    <input name="exp_start_${expCount}" placeholder="Date start">
-                    <input name="exp_end_${expCount}" placeholder="Date end">
-                    <textarea name="exp_desc_${expCount}" placeholder="Description"></textarea>
-                </div>
-            `;
-            expCount++;
+    <!-- JavaScript -->
+    <script> 
+        let experiences = [];
+        let editingExperienceIndex = null;
+        let formations = [];
+        let editingFormationIndex = null;
+
+        // Experiences
+        function finalizeExperience() {
+            const job = document.getElementById("job").value; // cherche valeur de id = job
+            const company = document.getElementById("company").value; 
+            const start = document.getElementById("exp_start").value;
+            const end = document.getElementById("exp_end").value;
+            const description = document.getElementById("exp_desc").value;
+            
+            const experiencedata = {
+                job: job,
+                company: company,
+                start: start,
+                end: end,
+                description: description
+            };
+
+            if (editingExperienceIndex === null) {
+                experiences.push(experiencedata);
+
+            } else {
+                experiences[editingExperienceIndex] = experiencedata;
+                editingExperienceIndex = null;
+            }
+
+            clearExperienceForm();
+            showExperience();
+            syncExperienceHiddenFields();
+        }
+        
+
+        function showExperience() {
+            const container = document.getElementById("experience-list");
+            container.innerHTML = ""; // efface les valeurs presentes
+
+            experiences.forEach((exp, index) => { // boucle sur les experiences enregistrées
+                container.innerHTML += `
+                    <div>
+                        <p><strong>${exp.job}</strong> - ${exp.company} (${exp.start} - ${exp.end})</p>
+                        <p>${exp.description}</p>
+
+                        <button type="button" onclick="editExperience(${index})">Modify</button>
+                        <button type="button" onclick="deleteExperience(${index})">Delete</button>
+                    </div>
+                `;
+            });
         }
 
-        function addFormation() {
-            document.getElementById("formations").innerHTML += `
-                <div>
-                    <input name="formation_${formCount}" placeholder="Formation type">
-                    <input name="university_${formCount}" placeholder="University">
-                    <input name="form_start_${formCount}" placeholder="Start year">
-                    <input name="form_end_${formCount}" placeholder="End year">
-                    <textarea name="form_desc_${formCount}" placeholder="Description"></textarea>
-                </div>
-            `;
-            formCount++;
+
+        function editExperience(index) {
+            const exp = experiences[index];
+
+            document.getElementById("job").value = exp.job;
+            document.getElementById("company").value = exp.company;
+            document.getElementById("exp_start").value = exp.start;
+            document.getElementById("exp_end").value = exp.end;
+            document.getElementById("exp_desc").value = exp.description;
+
+            editingExperienceIndex = index;
+        }
+
+            "A REVOIR LA PARTIE DELETE"
+        function deleteExperience(index) {
+            experiences.splice(index, 1); // supprime l'element a position "index"
+
+            if (editingExperienceIndex === index) {
+                editingExperienceIndex = null;
+                clearExperienceForm();
+            }
+
+            showExperience();
+            syncExperienceHiddenFields();
+        }
+
+
+        function clearExperienceForm() {
+            document.getElementById("job").value = "";
+            document.getElementById("company").value = "";
+            document.getElementById("exp_start").value = "";
+            document.getElementById("exp_end").value = "";
+            document.getElementById("exp_desc").value = "";
+        }
+
+
+        function syncExperienceHiddenFields() {
+            const hiddenContainer = document.getElementById("experience-hidden-fields");
+            hiddenContainer.innerHTML = "";
+
+            experiences.forEach((exp, index) => {
+                hiddenContainer.innerHTML += `
+                    <input type="hidden" name="job_${index}" value="${exp.job}">
+                    <input type="hidden" name="company_${index}" value="${exp.company}">
+                    <input type="hidden" name="exp_start_${index}" value="${exp.start}">
+                    <input type="hidden" name="exp_end_${index}" value="${exp.end}">
+                    <input type="hidden" name="exp_desc_${index}" value="${exp.description}">
+                `;
+            });
+        }
+
+        // Formations
+        function finalizeFormation() {
+            const formation = document.getElementById("formation").value;
+            const university = document.getElementById("university").value;
+            const start = document.getElementById("form_start").value;
+            const end = document.getElementById("form_end").value;
+            const description = document.getElementById("form_desc").value;
+
+            const formationData = {
+                formation: formation,
+                university: university,
+                start: start,
+                end: end,
+                description: description
+            };
+
+            if (editingFormationIndex === null) {
+                formations.push(formationData);
+
+            } else {
+                formations[editingFormationIndex] = formationData;
+                editingFormationIndex = null;
+            }
+
+            clearFormationForm();
+            showFormation();
+            syncFormationHiddenFields();
+        }
+
+
+        function showFormation() {
+            const container = document.getElementById("formation-list");
+            container.innerHTML = "";
+
+            formations.forEach((form, index) => {
+                container.innerHTML += `
+                    <div>
+                        <p><strong>${form.formation}</strong> - ${form.university} (${form.start} - ${form.end})</p>
+                        <p>${form.description}</p>
+                        <button type="button" onclick="editFormation(${index})">Modify</button>
+                        <button type="button" onclick="deleteFormation(${index})">Delete</button>
+                    </div>
+                `;
+            });
+        }
+
+
+        function editFormation(index) {
+            const form = formations[index];
+
+            document.getElementById("formation").value = form.formation;
+            document.getElementById("university").value = form.university;
+            document.getElementById("form_start").value = form.start;
+            document.getElementById("form_end").value = form.end;
+            document.getElementById("form_desc").value = form.description;
+
+            editingFormationIndex = index;
+        }
+
+
+        function deleteFormation(index) {
+            formations.splice(index, 1);
+
+            if (editingFormationIndex === index) {
+                editingFormationIndex = null;
+                clearFormationForm();
+            }
+
+            showFormation();
+            syncFormationHiddenFields();
+        }
+
+
+        function clearFormationForm() {
+            document.getElementById("formation").value = "";
+            document.getElementById("university").value = "";
+            document.getElementById("form_start").value = "";
+            document.getElementById("form_end").value = "";
+            document.getElementById("form_desc").value = "";
+        }
+
+
+        function syncFormationHiddenFields() {
+            const hiddenContainer = document.getElementById("formation-hidden-fields");
+            hiddenContainer.innerHTML = "";
+
+            formations.forEach((form, index) => {
+                hiddenContainer.innerHTML += `
+                    <input type="hidden" name="formation_${index}" value="${form.formation}">
+                    <input type="hidden" name="university_${index}" value="${form.university}">
+                    <input type="hidden" name="form_start_${index}" value="${form.start}">
+                    <input type="hidden" name="form_end_${index}" value="${form.end}">
+                    <input type="hidden" name="form_desc_${index}" value="${form.description}">
+                `;
+            });
         }
     </script>
 </head>
+
+<!-- HTML -->
 <body>
-
 <h1>Create my portfolio</h1>
-
 <form action="/generate" method="post">
 
     <h2>Personals informations</h2>
-    <input name="firstname" placeholder="Firstname" required><br>
-    <input name="name" placeholder="Name" required><br>
-    <input name="mail" placeholder="Mail"><br>
-    <input name="phone" placeholder="Phone number"><br>
+    <div id="personals-informations">
+        <input name="firstname" placeholder="Firstname" required><br>
+        <input name="name" placeholder="Name" required><br>
+        <input name="mail" placeholder="Mail"><br>
+        <input name="phone" placeholder="Phone number"><br>
+    </div>
+
 
     <h2>Experiences</h2>
-    <div id="experiences"></div>
-    <button type="button" onclick="addExperience()">+ Ajouter une expérience</button>
+    <div id="experience-editor">
+        <input id="job" placeholder="Job name"><br>
+        <input id="company" placeholder="Company"><br>
+        <input id="exp_start" placeholder="Date start"><br>
+        <input id="exp_end" placeholder="Date end"><br>
+        <textarea id="exp_desc" placeholder="Description"></textarea><br>
+    
+        <button type="button" onclick="finalizeExperience()">add an experience</button>
+    </div>
+
+    <div id="experience-list"></div>  <!-- zone vide remplie apres -->
+    <div id="experience-hidden-fields"></div>
+    
 
     <h2>Formations</h2>
-    <div id="formations"></div>
-    <button type="button" onclick="addFormation()">+ Ajouter une formation</button>
+    <div id="formation-editor">
+        <input id="formation" placeholder="Formation type"><br>
+        <input id="university" placeholder="University"><br>
+        <input id="form_start" placeholder="Start year"><br>
+        <input id="form_end" placeholder="End year"><br>
+        <textarea id="form_desc" placeholder="Description"></textarea><br>
+
+        <button type="button" onclick="finalizeFormation()">Finalize formation</button>
+    </div>
+
+    <div id="formation-list"></div>
+    <div id="formation-hidden-fields"></div>
+    
 
     <br><br>
     <button type="submit">Create the Portfolio</button>
