@@ -6,6 +6,7 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 
 from sqlmodel import SQLModel
 from database import engine
@@ -14,6 +15,7 @@ from models import model
 # Initialisation FastAPI 
 app = FastAPI()
 template = Jinja2Templates(directory="templates")
+app.mount("/styles", StaticFiles(directory="styles"), name="styles") # lie l'url "/styles" au dossier local styles
 
 # Creation des bases de données au demarrage
 SQLModel.metadata.create_all(engine)
