@@ -39,6 +39,7 @@ async def generate_port(request:Request):
     name = data_form.get("name", "")
     mail = data_form.get("mail", "")
     phone = data_form.get("phone", "")
+    linkedin = data_form.get("likedin", "")
 
     # Création de listes pour stocker les experiences et informations
     experiences = []
@@ -84,6 +85,7 @@ async def generate_port(request:Request):
         "name" : name,
         "mail" : mail,
         "phone" : phone,
+        "linkedin": linkedin,
         "experiences" : experiences,
         "formations" : formations,
     }
