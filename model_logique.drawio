@@ -1,0 +1,125 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="5Lv2gCap3AJdDCtINLNv">
+    <mxGraphModel dx="2343" dy="2469" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="jeulsFJSoCH20SO7XLBO-2" parent="1" style="swimlane;whiteSpace=wrap;html=1;" value="Person" vertex="1">
+          <mxGeometry height="250" width="200" x="880" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-3" parent="jeulsFJSoCH20SO7XLBO-2" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="id&amp;nbsp;" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-4" parent="jeulsFJSoCH20SO7XLBO-2" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="firstname" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-5" parent="jeulsFJSoCH20SO7XLBO-2" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="lastname" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-6" parent="jeulsFJSoCH20SO7XLBO-2" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="phone" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-7" parent="jeulsFJSoCH20SO7XLBO-2" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="mail" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-8" parent="jeulsFJSoCH20SO7XLBO-2" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="linkdln" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-19" edge="1" parent="1" source="jeulsFJSoCH20SO7XLBO-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="jeulsFJSoCH20SO7XLBO-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="590" y="285" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-10" parent="1" style="swimlane;whiteSpace=wrap;html=1;" value="Experience" vertex="1">
+          <mxGeometry height="310" width="190" x="400" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-11" parent="jeulsFJSoCH20SO7XLBO-10" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="id&amp;nbsp;" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-12" parent="jeulsFJSoCH20SO7XLBO-10" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="job_name" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-13" parent="jeulsFJSoCH20SO7XLBO-10" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="company_name" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-14" parent="jeulsFJSoCH20SO7XLBO-10" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="date_start" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-15" parent="jeulsFJSoCH20SO7XLBO-10" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="date_end" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-16" parent="jeulsFJSoCH20SO7XLBO-10" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="contract_type" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-17" parent="jeulsFJSoCH20SO7XLBO-10" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="description" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-20" parent="jeulsFJSoCH20SO7XLBO-10" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;b&gt;id_person&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-27" edge="1" parent="1" source="jeulsFJSoCH20SO7XLBO-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="jeulsFJSoCH20SO7XLBO-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-21" parent="1" style="swimlane;whiteSpace=wrap;html=1;" value="Skills" vertex="1">
+          <mxGeometry height="200" width="200" x="740" y="585" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-22" parent="jeulsFJSoCH20SO7XLBO-21" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="id" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-23" parent="jeulsFJSoCH20SO7XLBO-21" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="name" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-24" parent="jeulsFJSoCH20SO7XLBO-21" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="level" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="125" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-25" parent="jeulsFJSoCH20SO7XLBO-21" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;b&gt;id_person&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="155" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-37" edge="1" parent="1" source="jeulsFJSoCH20SO7XLBO-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="jeulsFJSoCH20SO7XLBO-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-28" parent="1" style="swimlane;whiteSpace=wrap;html=1;" value="Formation" vertex="1">
+          <mxGeometry height="280" width="200" x="1150" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-29" parent="jeulsFJSoCH20SO7XLBO-28" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="id" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-30" parent="jeulsFJSoCH20SO7XLBO-28" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="name" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-31" parent="jeulsFJSoCH20SO7XLBO-28" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="date_start" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-33" parent="jeulsFJSoCH20SO7XLBO-28" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="date_end" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-34" parent="jeulsFJSoCH20SO7XLBO-28" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="sector" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-35" parent="jeulsFJSoCH20SO7XLBO-28" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="degree_type" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-36" parent="jeulsFJSoCH20SO7XLBO-28" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;b&gt;id_person&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-42" edge="1" parent="1" source="jeulsFJSoCH20SO7XLBO-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="jeulsFJSoCH20SO7XLBO-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-38" parent="1" style="swimlane;whiteSpace=wrap;html=1;" value="Book" vertex="1">
+          <mxGeometry height="140" width="200" x="880" y="-100" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-39" parent="jeulsFJSoCH20SO7XLBO-38" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="id&amp;nbsp;" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-40" parent="jeulsFJSoCH20SO7XLBO-38" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="photo" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="jeulsFJSoCH20SO7XLBO-41" parent="jeulsFJSoCH20SO7XLBO-38" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;b&gt;id_person&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="70" y="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
