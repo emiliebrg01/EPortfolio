@@ -3,6 +3,8 @@
 #################
 #### IMPORTS ####
 #################
+import os
+from dotenv import load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
@@ -22,7 +24,10 @@ from schemas.dto import UserRegisterDTO, UserLoginDTO
 app = FastAPI()
 template = Jinja2Templates(directory="templates")
 
-app.add_middleware(SessionMiddleware, secret_key="CHANGE_MOI_EN_PROD")
+load_dotenv()
+
+secret_key = os.getenv("SESSION_SECRET_KEY")
+app.add_middleware(SessionMiddleware, secret_key=secret_key)
 
 # Creation des bases de données au demarrage
 SQLModel.metadata.create_all(engine)
