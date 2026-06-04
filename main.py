@@ -39,15 +39,17 @@ async def generate_port(request:Request):
     name = data_form.get("name", "")
     mail = data_form.get("mail", "")
     phone = data_form.get("phone", "")
-    linkedin = data_form.get("likedin", "")
+    linkedin = data_form.get("linkedin", "")
 
-    # Création de listes pour stocker les experiences et informations
+    # Création de listes pour stocker les experiences, informations, skills
     experiences = []
     formations = []
+    skills = []
 
     # Création de set pour reperer les indexes et éviter les doublons 
     exp = set()
     form = set()
+    sk = set()
 
     # Repere les indexs
     for key in data_form.keys():
@@ -55,8 +57,10 @@ async def generate_port(request:Request):
             exp.add(key.split("_")[1])
         if key.startswith("formation_"):
             form.add(key.split("_")[1])
+        if key.startswith("name_"):
+            sk.add(key.split("_")[2])
     
-    # Reconstruit les experiences et formations
+    # Reconstruit les experiences 
     for index in sorted(exp, key=int):
         experiences.append(
         {
@@ -68,6 +72,7 @@ async def generate_port(request:Request):
         }
         )
 
+    # Reconstruits les formations
     for index in sorted(form, key=int):
         formations.append(
         {
@@ -78,7 +83,15 @@ async def generate_port(request:Request):
             "description" : data_form.get(f"form_desc_{index}", ""),
         }
         )
-
+    # Reconstruit les skills
+    for index in sorted(sk, key=int):
+        skills.append(
+        {
+            "name" : data_form.get(f"name_{index}", ""),
+            "level" : data_form.get(f"level_{index}", ""),
+        }
+        )
+    
     context = {
         "request" : request,
         "firstname" : firstname,
@@ -88,6 +101,7 @@ async def generate_port(request:Request):
         "linkedin": linkedin,
         "experiences" : experiences,
         "formations" : formations,
+        "skills": skills,
     }
 
     return template.TemplateResponse(
