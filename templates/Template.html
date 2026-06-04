@@ -5,12 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - {{ firstname }} {{ name }}</title>
+    <link rel="stylesheet" href="/styles/style.css">
 </head>
 
 <body>
-    <h1>{{ firstname }} {{ name }}</h1>
-    <p>{{ mail }} | {{ phone }}</p>
+    
+    <h1>Portofio de {{firstname}} {{ name }}</h1>
+    <p>{{ mail }} | {{ phone }} | {{ linkedin }}</p>
 
+    <div class="portfolio-item">
     <h2>Professional Experiences</h2>
     {% if experiences %}
         {% for exp in experiences %}
@@ -24,6 +27,7 @@
         <p>No experience added yet.</p>
     {% endif %}
 
+
     <h2>Formations</h2>
     {% if formations %}
         {% for form in formations %}
@@ -36,6 +40,7 @@
     {% else %}
         <p>No formation added yet.</p>
     {% endif %}
+    </div>
 </body>
 
 </html>
