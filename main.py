@@ -27,7 +27,8 @@ template = Jinja2Templates(directory="templates")
 load_dotenv()
 
 secret_key = os.getenv("SESSION_SECRET_KEY")
-app.add_middleware(SessionMiddleware, secret_key=secret_key)
+app.add_middleware(SessionMiddleware, secret_key=secret_key, max_age=1800)
+
 
 # Creation des bases de données au demarrage
 SQLModel.metadata.create_all(engine)
