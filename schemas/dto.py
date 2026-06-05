@@ -1,6 +1,7 @@
 from sqlmodel import SQLModel
 from datetime import date
 
+
 class PersonBaseDTO(SQLModel):
     firstname: str
     lastname: str
@@ -25,6 +26,8 @@ class UserRegisterDTO(SQLModel):
 class UserLoginDTO(SQLModel):
     username: str
     password: str
+
+
 class ExperienceBaseDTO(SQLModel):
     job_name: str
     company_name: str
@@ -33,12 +36,14 @@ class ExperienceBaseDTO(SQLModel):
     contract_type: str = ""
     description: str = ""
 
+
 class ExperienceDTO(ExperienceBaseDTO):
     pass
 
 
 class ExperienceResponseDTO(ExperienceBaseDTO):
     id: int
+
 
 class FormationBaseDTO(SQLModel):
     name: str
@@ -48,19 +53,23 @@ class FormationBaseDTO(SQLModel):
     degree_type: str = ""
     description: str = ""
 
+
 class FormationDTO(FormationBaseDTO):
     pass
 
+
 class FormationREsponseDTO(FormationBaseDTO):
     id: int
+
 
 class SkillsBaseDTO(SQLModel):
     name: str
     level: int
 
+
 class SkillsDTO(SkillsBaseDTO):
     pass
 
+
 class SkilsResponseDTO(SkillsBaseDTO):
     id: int
-

@@ -115,3 +115,39 @@ EPortfolio/
 | GET     | `/register` | Page d'inscription                  |
 | POST    | `/register` | Traitement de l'inscription         |
 | GET     | `/logout`   | Déconnexion                         |
+| GET     | `/make-admin/{username}?key=...` | Passe un utilisateur en admin |
+
+---
+
+## Gestion des admins
+
+### Variables d'environnement nécessaires
+
+Copie `.env.example` en `.env` et remplis les valeurs :
+
+```
+SESSION_SECRET_KEY=  # clé pour signer les sessions
+ADMIN_SECRET=        # clé secrète pour la route make-admin
+```
+
+Pour générer des clés aléatoires :
+```bash
+python -c "import secrets; print(secrets.token_hex(32))"
+```
+
+### Passer un utilisateur en admin
+
+Une fois l'application lancée et l'utilisateur inscrit, appelle cette URL dans ton navigateur :
+
+```
+http://127.0.0.1:8000/make-admin/{username}?key={ADMIN_SECRET}
+```
+
+Remplace `{username}` par le nom d'utilisateur cible et `{ADMIN_SECRET}` par la valeur définie dans ton `.env`.
+
+Exemple :
+```
+http://127.0.0.1:8000/make-admin/emilie?key=abc123
+```
+
+Une réponse `{"message": "emilie est maintenant admin"}` confirme le succès.

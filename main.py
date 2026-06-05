@@ -5,26 +5,25 @@
 #################
 import os
 from dotenv import load_dotenv
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Depends
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-
-from sqlmodel import SQLModel
-from database import engine
+from sqlmodel import SQLModel, Session
+from database import engine, get_session
 from models import model
-
 from starlette.middleware.sessions import SessionMiddleware
-from fastapi import Depends
-from sqlmodel import Session
-from database import get_session
 from services.service import register_user, login_user
 from schemas.dto import UserRegisterDTO, UserLoginDTO
+from repositories.repository import get_user_by_username
+
 
 # Initialisation FastAPI
 app = FastAPI()
 template = Jinja2Templates(directory="templates")
-app.mount("/styles", StaticFiles(directory="styles"), name="styles") # lie l'url "/styles" au dossier local styles
+app.mount(
+    "/styles", StaticFiles(directory="styles"), name="styles"
+)  # lie l'url "/styles" au dossier local styles
 
 load_dotenv()
 
@@ -85,6 +84,19 @@ def logout(request: Request):
     return RedirectResponse(url="/login", status_code=302)
 
 
+@app.get("/make-admin/{username}")
+def make_admin(username: str, key: str, session: Session = Depends(get_session)):
+    if key != os.getenv("ADMIN_SECRET"):
+        return {"error": "Non autorisé"}
+    user = get_user_by_username(session, username)
+    if not user:
+        return {"error": "Utilisateur introuvable"}
+    user.is_admin = True
+    session.add(user)
+    session.commit()
+    return {"message": f"{username} est maintenant admin"}
+
+
 @app.get("/", response_class=HTMLResponse)
 def read_home(request: Request):
     if not request.session.get("user_id"):
@@ -125,8 +137,8 @@ async def generate_port(request: Request):
             form.add(key.split("_")[1])
         if key.startswith("name_"):
             sk.add(key.split("_")[2])
-    
-    # Reconstruit les experiences 
+
+    # Reconstruit les experiences
     for index in sorted(exp, key=int):
         experiences.append(
             {
@@ -152,21 +164,21 @@ async def generate_port(request: Request):
     # Reconstruit les skills
     for index in sorted(sk, key=int):
         skills.append(
-        {
-            "name" : data_form.get(f"name_{index}", ""),
-            "level" : data_form.get(f"level_{index}", ""),
-        }
+            {
+                "name": data_form.get(f"name_{index}", ""),
+                "level": data_form.get(f"level_{index}", ""),
+            }
         )
-    
+
     context = {
-        "request" : request,
-        "firstname" : firstname,
-        "name" : name,
-        "mail" : mail,
-        "phone" : phone,
+        "request": request,
+        "firstname": firstname,
+        "name": name,
+        "mail": mail,
+        "phone": phone,
         "linkedin": linkedin,
-        "experiences" : experiences,
-        "formations" : formations,
+        "experiences": experiences,
+        "formations": formations,
         "skills": skills,
     }
 
