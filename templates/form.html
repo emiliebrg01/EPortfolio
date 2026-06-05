@@ -12,8 +12,10 @@
         let editingExperienceIndex = null;
         let formations = [];
         let editingFormationIndex = null;
-        let skills = []
+        let skills = [];
         let editingSkillsIndex = null;
+        let books = [];
+        let editingBooksIndex = null;
 
         // Experiences
         function finalizeExperience() {
@@ -75,7 +77,7 @@
             editingExperienceIndex = index;
         }
 
-        "A REVOIR LA PARTIE DELETE"
+
         function deleteExperience(index) {
             experiences.splice(index, 1); // supprime l'element a position "index"
 
@@ -112,6 +114,7 @@
                 `;
             });
         }
+
 
         // Formations
         function finalizeFormation() {
@@ -211,87 +214,169 @@
             });
         }
 
+        // Skills
         function finalizeSkills() {
             const name = document.getElementById("name").value;
             const level = document.getElementById("level").value
 
-            const skillsdata = {
+            const skillsData = {
                 name: name,
                 level: level,
             };
 
             if (editingSkillsIndex === null) {
-                skills.push(skillsdata);
+                skills.push(skillsData);
 
             } else {
+                skills[editingSkillsIndex] = skillsData;
                 editingSkillsIndex = null;
-            
             }
 
             clearSkillsForm();
-            skillsFormation();
+            showSkills();
             syncSkillsHiddenFields();
             
         }
 
+        function clearSkillsForm() {
+            document.getElementById("name").value = "";
+            document.getElementById("level").value = "";
+        }
 
-            function clearSkillsForm() {
-                document.getElementById("name").value = "";
-                document.getElementById("level").value = "";
+
+        function showSkills() {
+            const container = document.getElementById("skills-list");
+            container.innerHTML = "";
+
+            skills.forEach((skills, index) => {
+                container.innerHTML += `
+                    <div>
+                        <p><strong>${skills.name}</strong> - ${skills.level}</p>
+                        <p>${skills.description}</p>
+
+                        <button type="button" onclick="editSkills(${index})">Modify</button>
+                        <button type="button" onclick="deleteSkills(${index})">Delete</button>
+                    </div>
+                `;
+            });
+        }
+
+        function editSkills(index) {
+            const sk = skills[index]
+
+            document.getElementById("name").value = sk.name;
+            document.getElementById("level").value = sk.level;
+
+            editingSkillsIndex = index;
+        }
+
+        function deleteSkills(index) {
+            skills.splice(index, 1);
+
+            if (editingSkillsIndex === index) {
+                editingSkillsIndex = null;
+                clearSkillsForm();
+            }
+            showSkills();
+            
+        }
+
+        function syncSkillsHiddenFields() {
+            const hiddenContainer = document.getElementById("skills-hidden-fields");
+            hiddenContainer.innerHTML = "";
+
+            skills.forEach((skill, index) => {
+                hiddenContainer.innerHTML += `
+                    <input type="hidden" name="name_${index}" value="${skill.name}">
+                    <input type="hidden" name="level_${index}" value="${skill.level}">
+                `;
+            });
+        }
+
+
+        // Book
+        function finalizeBook() {
+            const photo = document.getElementById("photo").value;
+
+            const BookData = {
+                photo: photo,
+            };
+
+            if (editingBooksIndex === null) {
+                books.push(BookData);
+
+            } else {
+                books[editingBooksIndex] = BookData;
+                editingBooksIndex = null;
             }
 
+            clearBookForm();
+            showBook();
+            syncBookHiddenFields();
+        }
 
-            function showSkills() {
-                const container = document.getElementById("skills-list");
-                container.innerHTML = "";
 
-                skills.forEach((skills, index) => {
-                    container.innerHTML += `
-                        <div>
-                            <p><strong>${skills.name}</strong> - ${skills.level}</p>
-                            <p>${skills.description}</p>
+        function clearBookForm() {
+            document.getElementById("photo").value = "";
+        }
 
-                            <button type="button" onclick="editSkills(${index})">Modify</button>
-                            <button type="button" onclick="deleteSkills(${index})">Delete</button>
-                        </div>
-                    `;
-                });
+
+        function showBook() {
+            const container = document.getElementById("books-list");
+            container.innerHTML = "";
+
+            books.forEach((book, index) => {
+                container.innerHTML += `
+                    <div>
+                        <p><strong>${book.photo}</strong></p>
+
+                        <button type="button" onclick="editBooks(${index})">Modify</button>
+                        <button type="button" onclick="deleteBooks(${index})">Delete</button>
+                    </div>
+                `;
+            });
+        }
+
+
+        function editBooks(index) {
+            const bk = books[index]
+
+            document.getElementById("photo").value = bk.photo;
+
+            editingBooksIndex = index;
+        }
+
+
+        function deleteBooks(index) {
+            books.splice(index, 1); // supprime l'element a position "index"
+
+            if (editingBooksIndex === index) {
+                editingBooksIndex = null;
+                clearBookForm();
             }
 
-            function editSkills(index) {
-                const sk = skills[index]
+            showBook();
+            syncBookHiddenFields();
+        }
 
-                document.getElementById("name").value = sk.name;
-                document.getElementById("level").value = sk.level;
 
-                editingSkillsIndex = index;
-            }
+        function syncBookHiddenFields() {
+            const hiddenContainer = document.getElementById("books-hidden-fields");
+            hiddenContainer.innerHTML = "";
 
-            function deleteExperience(index) {
-                skills.splice(index, 1);
+            books.forEach((bk, index) => {
+                hiddenContainer.innerHTML += `
+                    <input type="hidden" name="photo_${index}" value="${bk.photo}">
+                `;
+            });
+        }
 
-                if (editingSkillsIndex === index) {
-                    editingSkillsIndex = null;
-                    clearSkillsForm();
-                }
-                showSkills();
-                
-            }
 
-            function syncSkillsHiddenFields() {
-                const hiddenContainer = document.getElementById("skills-hidden-fields");
-                hiddenContainer.innerHTML = "";
+        
 
-                skills.forEach((skill, index) => {
-                    hiddenContainer.innerHTML += `
-                        <input type="hidden" name="name${index}" value="${skill.name}">
-                        <input type="hidden" name="level${index}" value="${skill.level}">
-                    `;
-                });
-            }
-
-    </script>
+</script>
 </head>
+
 
 <!-- HTML -->
 
@@ -353,7 +438,7 @@
     <h2>Personals informations</h2>
     <div id="personals-informations">
         <input name="firstname" placeholder="Firstname" required><br>
-        <input name="name" placeholder="Name" required><br>
+        <input name="lastname" placeholder="Lastname" required><br>
         <input name="mail" placeholder="Mail"><br>
         <input name="phone" placeholder="Phone number"><br>
         <input name="linkedin" placeholder="Linkedin"><br>
@@ -364,63 +449,50 @@
     <div id="experience-editor">
         <input id="job" placeholder="Job name"><br>
         <input id="company" placeholder="Company"><br>
-        <input id="exp_start" placeholder="Date start"><br>
-        <input id="exp_end" placeholder="Date end"><br>
+        <input type="date" id="exp_start"><br>
+        <input type="date" id="exp_end"><br>
         <textarea id="exp_desc" placeholder="Description"></textarea><br>
-    
+        
         <button type="button" onclick="finalizeExperience()">Add an experience</button>
     </div>
-
+    
     <div id="experience-list"></div>  <!-- zone vide remplie apres -->
     <div id="experience-hidden-fields"></div>
     
-
+    
     <h2>Formations</h2>
     <div id="formation-editor">
         <input id="formation" placeholder="Formation type"><br>
         <input id="university" placeholder="University"><br>
-        <input id="form_start" placeholder="Start year"><br>
-        <input id="form_end" placeholder="End year"><br>
+        <input type="date" id="form_start"><br>
+        <input type="date" id="form_end"><br>
         <textarea id="form_desc" placeholder="Description"></textarea><br>
-
+        
         <button type="button" onclick="finalizeFormation()">Add a formation</button>
     </div>
-
-    <h2>Skills</h2>
-    <div id="skills-editor">
-        <input id="formation" placeholder="Formation type"><br>
-        <input id="university" placeholder="University"><br>
-        <input id="form_start" placeholder="Start year"><br>
-        <input id="form_end" placeholder="End year"><br>
-        <textarea id="form_desc" placeholder="Description"></textarea><br>
-
-        <button type="button" onclick="finalizeFormation()">Add a formation</button>
-    </div>
-
-
-    <h2>Book</h2>
-    <div id="book-editor">
-        <input id="photo" placeholder="Photo type"><br>
-        <textarea id="form_desc" placeholder="Description"></textarea><br>
-
-        <button type="button" onclick="finalizeBook">Add a formation</button>
-    </div>
-
-
-
     <div id="formation-list"></div>
     <div id="formation-hidden-fields"></div>
+
 
     <h2>Skills</h2>
     <div id="skills-editor">
         <input id="name" placeholder="Skill name"><br>
         <input id="level" placeholder="Skill level"><br>
 
-        <button type="button" onclick="finalizeSkills">Add a skill</button>
+        <button type="button" onclick="finalizeSkills()">Add a skill</button>
     </div>
-    <div id="skill-list"></div>
-    <div id="skill-hidden-fields"></div>
+    <div id="skills-list"></div>
+    <div id="skills-hidden-fields"></div>
     
+
+    <h2>Book</h2>
+    <div id="book-editor">
+        <input id="photo" placeholder="Photo type"><br>
+
+        <button type="button" onclick="finalizeBook()">Add a book</button>
+    </div>
+    <div id="books-list"></div>
+    <div id="books-hidden-fields"></div>
 
     <br><br>
     <button type="submit">Create the Portfolio</button>
@@ -428,6 +500,9 @@
 
 </body>
 </html>
+
+
+
 
 Concernant le portofolio, derriere chose faite, c "skills" dans 
 le form.html on avait finit de créer les fonctions concernant cette table. 

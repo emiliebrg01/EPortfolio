@@ -24,13 +24,6 @@ class Experience(SQLModel, table=True):
     person_id: int = Field(foreign_key="person.id")
 
 
-class Skills(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    name: str
-    level: int
-    person_id: int = Field(foreign_key="person.id")
-
-
 class Formation(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     name: str
@@ -40,6 +33,14 @@ class Formation(SQLModel, table=True):
     degree_type: str = ""
     description: str = ""
     person_id: int = Field(foreign_key="person.id")
+
+
+class Skills(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str
+    level: int
+    person_id: int = Field(foreign_key="person.id")
+
 
 
 class Book(SQLModel, table=True):
