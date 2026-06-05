@@ -16,6 +16,7 @@ from schemas.dto import PersonDTO, ExperienceDTO, FormationDTO,SkillsDTO, BookDT
 from services.service import (create_person_service, create_experience_service, create_formation_service, create_skill_service, create_book_service, register_user, login_user)
 from starlette.middleware.sessions import SessionMiddleware
 from repositories.repository import get_user_by_username
+from datetime import date
 
 
 # Initialisation FastAPI

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Connexion — Portfolio generator</title>
+    <title>Login — Portfolio generator</title>
     <link rel="stylesheet" href="/styles/style.css">
 </head>
 
@@ -11,18 +11,18 @@
     <h1>Portfolio Generator</h1>
 
     <form method="post" action="/login">
-        <h2>Connexion</h2>
+        <h2>Login</h2>
 
         {% if error %}
         <p style="color: #8b2635;">{{ error }}</p>
         {% endif %}
 
-        <input type="text" name="username" placeholder="Nom d'utilisateur" required>
-        <input type="password" name="password" placeholder="Mot de passe" required>
-        <button type="submit">Se connecter</button>
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Log in</button>
 
         <p style="margin-top: 20px;">
-            Pas encore de compte ? <a href="/register">S'inscrire</a>
+            Don't have an account yet ? <a href="/register">Sign up</a>
         </p>
     </form>
 

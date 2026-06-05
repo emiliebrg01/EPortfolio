@@ -42,6 +42,5 @@ def login_user(session: Session, user_data: UserLoginDTO):
 
 # A ajouter plus tard :
 
-# email unique
 # telephone unique
 # etc ...
