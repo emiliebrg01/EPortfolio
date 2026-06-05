@@ -15,6 +15,16 @@ class PersonDTO(PersonBaseDTO):
 class PersonResponseDTO(PersonBaseDTO):
     id: int
 
+
+class UserRegisterDTO(SQLModel):
+    username: str
+    email: str
+    password: str
+
+
+class UserLoginDTO(SQLModel):
+    username: str
+    password: str
 class ExperienceBaseDTO(SQLModel):
     job_name: str
     company_name: str

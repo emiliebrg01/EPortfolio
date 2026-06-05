@@ -1,13 +1,13 @@
 <!DOCTYPE html> <!-- page html -->
-<html lang="fr"> 
+<html lang="fr">
 
-<head>  <!-- infos de configuration de la page -->
+<head> <!-- infos de configuration de la page -->
     <meta charset="UTF-8">
     <title>Portfolio generator</title>
     <link rel="stylesheet" href="/styles/style.css">
 
     <!-- JavaScript -->
-    <script> 
+    <script>
         let experiences = [];
         let editingExperienceIndex = null;
         let formations = [];
@@ -18,11 +18,11 @@
         // Experiences
         function finalizeExperience() {
             const job = document.getElementById("job").value; // cherche valeur de id = job
-            const company = document.getElementById("company").value; 
+            const company = document.getElementById("company").value;
             const start = document.getElementById("exp_start").value;
             const end = document.getElementById("exp_end").value;
             const description = document.getElementById("exp_desc").value;
-            
+
             const experiencedata = {
                 job: job,
                 company: company,
@@ -43,7 +43,7 @@
             showExperience();
             syncExperienceHiddenFields();
         }
-        
+
 
         function showExperience() {
             const container = document.getElementById("experience-list");
@@ -75,7 +75,7 @@
             editingExperienceIndex = index;
         }
 
-            "A REVOIR LA PARTIE DELETE"
+        "A REVOIR LA PARTIE DELETE"
         function deleteExperience(index) {
             experiences.splice(index, 1); // supprime l'element a position "index"
 
@@ -294,7 +294,59 @@
 </head>
 
 <!-- HTML -->
+
 <body>
+    <a href="/logout"><button type="button">Se déconnecter</button></a>
+    <h1>Create my portfolio</h1>
+
+    <form action="/generate" method="post">
+
+        <h2>Personals informations</h2>
+        <div id="personals-informations">
+            <input name="firstname" placeholder="Firstname" required><br>
+            <input name="name" placeholder="Name" required><br>
+            <input name="mail" placeholder="Mail"><br>
+            <input name="phone" placeholder="Phone number"><br>
+        </div>
+
+
+        <h2>Experiences</h2>
+        <div id="experience-editor">
+            <input id="job" placeholder="Job name"><br>
+            <input id="company" placeholder="Company"><br>
+            <input id="exp_start" placeholder="Date start"><br>
+            <input id="exp_end" placeholder="Date end"><br>
+            <textarea id="exp_desc" placeholder="Description"></textarea><br>
+
+            <button type="button" onclick="finalizeExperience()">add an experience</button>
+        </div>
+
+        <div id="experience-list"></div> <!-- zone vide remplie apres -->
+        <div id="experience-hidden-fields"></div>
+
+
+        <h2>Formations</h2>
+        <div id="formation-editor">
+            <input id="formation" placeholder="Formation type"><br>
+            <input id="university" placeholder="University"><br>
+            <input id="form_start" placeholder="Start year"><br>
+            <input id="form_end" placeholder="End year"><br>
+            <textarea id="form_desc" placeholder="Description"></textarea><br>
+
+            <button type="button" onclick="finalizeFormation()">Finalize formation</button>
+        </div>
+
+        <div id="formation-list"></div>
+        <div id="formation-hidden-fields"></div>
+
+
+        <br><br>
+        <button type="submit">Create the Portfolio</button>
+    </form>
+
+</body>
+
+</html>
 <h1>Create my portfolio</h1>
 <form action="/generate" method="post">
 
