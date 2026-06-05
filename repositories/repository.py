@@ -14,7 +14,6 @@ def create_person(session: Session, person_data: PersonDTO):
         phone = person_data.phone,
         mail = person_data.mail,
     )
-
     session.add(person)
     session.commit()
     session.refresh(person)

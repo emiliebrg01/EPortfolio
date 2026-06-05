@@ -235,14 +235,13 @@
             clearSkillsForm();
             showSkills();
             syncSkillsHiddenFields();
-            
+
         }
 
         function clearSkillsForm() {
             document.getElementById("name").value = "";
             document.getElementById("level").value = "";
         }
-
 
         function showSkills() {
             const container = document.getElementById("skills-list");
@@ -309,6 +308,9 @@
                 books[editingBooksIndex] = BookData;
                 editingBooksIndex = null;
             }
+            showSkills();
+
+        }
 
             clearBookForm();
             showBook();
@@ -421,8 +423,27 @@
             <button type="button" onclick="finalizeFormation()">Finalize formation</button>
         </div>
 
+
+        <h2>Book</h2>
+        <div id="book-editor">
+            <input id="photo" placeholder="Photo type"><br>
+            <textarea id="form_desc" placeholder="Description"></textarea><br>
+
+            <button type="button" onclick="finalizeBook">Add a formation</button>
+        </div>
+
         <div id="formation-list"></div>
         <div id="formation-hidden-fields"></div>
+
+        <h2>Skills</h2>
+        <div id="skills-editor">
+            <input id="name" placeholder="Skill name"><br>
+            <input id="level" placeholder="Skill level"><br>
+
+            <button type="button" onclick="finalizeSkills">Add a skill</button>
+        </div>
+        <div id="skill-list"></div>
+        <div id="skill-hidden-fields"></div>
 
 
         <br><br>

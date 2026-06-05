@@ -54,3 +54,5 @@ class User(SQLModel, table=True):
     username: str = Field(unique=True, index=True)
     email: str = Field(unique=True)
     hashed_password: str
+    is_admin: bool = False
+    person_id: Optional[int] = Field(default=None, foreign_key="person.id")
